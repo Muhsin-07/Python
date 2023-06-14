@@ -1,0 +1,7 @@
+{
+    "Çalışan": ["Ahmet Yılmaz","Muhsin Demir","Elif Mercan","Mehmet Halil Demir","Şehriban Ayten","Ali Yılmaz","Sedat Mercan"],
+    "Departman": ["İnsan Kaynakları","Bilgi İşlem","Muhasebe","İnsan Kaynakları","Bilgi İşlem","Muhasebe","İnsan Kaynakları"],
+    "Yaş": [30,21,19,20,22,24,37],
+    "Semt": ["Kadıköy","Tuzla","Maltepe","Tuzla","Maltepe","Tuzla","Kadıköy"],
+    "Maaş": [9500,450000,95000,120000,90000,25000,50000]
+}
