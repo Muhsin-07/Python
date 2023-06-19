@@ -10,11 +10,9 @@ result = df[5:20].head(5)
 # 3- Dataset' de bulunan kolon isimleri ve sayısını bulunuz.
 result = df.columns
 result = len(df.columns)
-
 # 4- Aşağıda bulunan bazı kolonları silin ve kalan kolonları listeleyiniz.
-#(thumbnail_link,comments_disabled,ratings_disabled,video_error_or_removed,description)
+# (thumbnail_link,comments_disabled,ratings_disabled,video_error_or_removed,description)
 df.drop(["thumbnail_link","comments_disabled","ratings_disabled","video_error_or_removed","description","trending_date"],axis=1,inplace=True)
-
 # 5- Beğenme (like) ve beğenmeme (dislike) sayılarının ortalamasını bulunuz.
 result = df["likes"].mean()
 result = df["dislikes"].mean()
@@ -37,40 +35,38 @@ result = df.groupby("category_id").mean().sort_values("likes")["likes"]
 # 11- Kategoriye göre yorum sayılarını yukarıdan aşağıya sıralayınız.
 result = df.groupby("category_id").sum().sort_values("comment_count", ascending = False)["comment_count"]
 
-# # 12- Her kategoride kaç video vardır ?
-# result = df["category_id"].value_counts()
+# 12- Her kategoride kaç video vardır ?
+result = df["category_id"].value_counts()
 
-# # 13- Her videonun title uzunluğu bilgisini yeni bir kolonda gösteriniz.
-# df["title_len"] = df["title"].apply(len)
+# 13- Her videonun title uzunluğu bilgisini yeni bir kolonda gösteriniz.
+df["title_len"] = df["title"].apply(len)
 
-# # 14- Her video için kullanılan tag sayısını yeni kolonda gösteriniz.
-# # df["tag_count"] = df["tags"].apply(lambda x: len(x.split('|')))
+# 14- Her video için kullanılan tag sayısını yeni kolonda gösteriniz.
+# df["tag_count"] = df["tags"].apply(lambda x: len(x.split('|')))
 
-# def tagCount(tag):
-#     return len(tag.split('|'))
+def tagCount(tag):
+    return len(tag.split('|'))
 
-# df["tag_count"] = df["tags"].apply(tagCount)
+df["tag_count"] = df["tags"].apply(tagCount)
 
-# # 15- En popüler videoları listeleyiniz.(like/dislike oranına göre)
+# 15- En popüler videoları listeleyiniz.(like/dislike oranına göre)
 
-# def likedislikeoranhesapla(dataset):
-#     likesList = list(dataset["likes"])
-#     dislikesList = list(dataset["dislikes"])
+def likedislikeoranhesapla(dataset):
+    likesList = list(dataset["likes"])
+    dislikesList = list(dataset["dislikes"])
 
-#     liste = list(zip(likesList,dislikesList))
+    liste = list(zip(likesList,dislikesList))
 
-#     oranListesi = []
+    oranListesi = []
 
-#     for like,dislike  in liste: 
-#         if (like + dislike) == 0:
-#             oranListesi.append(0)
-#         else:
-#             oranListesi.append(like/(like+dislike))
+    for like,dislike  in liste: 
+        if (like + dislike) == 0:
+            oranListesi.append(0)
+        else:
+            oranListesi.append(like/(like+dislike))
 
-#     return oranListesi
+    return oranListesi
 
-# df["beğeni_orani"] = likedislikeoranhesapla(df)
+df["beğeni_orani"] = likedislikeoranhesapla(df)
 
-# print(df.sort_values("beğeni_orani",ascending=False)[["title","likes","dislikes","beğeni_orani"]])
-# print(df)
-print(result)
+print(df.sort_values("beğeni_orani",ascending=False)[["title","likes","dislikes","beğeni_orani"]])
