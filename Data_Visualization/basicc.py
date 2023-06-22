@@ -58,8 +58,8 @@ plt.show()
 
 df = pd.read_csv("datasets/nba.csv")
 df.drop(["draft_number","gp","pts","reb","ast","oreb_pct","dreb_pct","usg_pct","ts_pct","ast_pct"], axis = 1, inplace=True)
-df.groupby("team_abbreviation")[["age","player_height","player_weight"]].mean().head(10)
-df.plot(subplots=True)
+df.groupby("team_abbreviation")[["age","player_height","player_weight"]].mean()
+df.head().plot(subplots=True)
 
 plt.legend()
 plt.show()
